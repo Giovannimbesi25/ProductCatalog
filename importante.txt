@@ -1,0 +1,29 @@
+docker build -t product-backend .
+docker tag product-backend giovannimbesi/product-backend:latest
+docker push giovannimbesi/product-backend:latest
+
+docker build -t product-frontend .
+docker tag product-frontend giovannimbesi/product-frontend:latest
+docker push giovannimbesi/product-frontend:latest
+
+docker run --rm -p 80:80 product-frontend
+docker run --rm -p 8080:8080 product-backend
+
+minikube start
+kubectl apply -f deployments/mysql.yaml
+kubectl apply -f deployments/product-frontend.yaml
+kubectl apply -f deployments/product-backend.yaml
+
+kubectl get all -o
+
+kubectl port-forward service/product-backend 8080:8080
+
+minikube service product-backend --url
+
+
+productMS
+root
+giovanni
+3307
+
+

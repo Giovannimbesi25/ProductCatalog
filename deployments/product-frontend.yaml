@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-frontend
+  template:
+    metadata:
+      labels:
+        app: product-frontend
+    spec:
+      containers:
+        - name: product-frontend
+          image: giovannimbesi/product-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: API_BASE_URL
+              value: "http://product-backend-service:8080/api/products"
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-frontend
+spec:
+  selector:
+    app: product-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: NodePort
+ 
+
+
