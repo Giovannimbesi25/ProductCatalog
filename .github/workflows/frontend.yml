@@ -17,7 +17,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: ./productFrontend/Dockerfile
+        file: ../../productFrontend/Dockerfile
         push: true
         tags: giovannimbesi/product-frontend:latest
       env:
