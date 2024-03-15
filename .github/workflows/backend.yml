@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./productBackend//Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/product-backend:latest
 
 
 
