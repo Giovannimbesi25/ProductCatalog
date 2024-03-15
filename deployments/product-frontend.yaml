@@ -27,14 +27,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: product-frontend
+  name: product-frontend-service
 spec:
   selector:
     app: product-frontend
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 3000
+    - protocol: "TCP"
+      port: 3000 # Porta interna del servizio nel cluster
+      targetPort: 3000 # Porta esposta dal servizio
+      nodePort: 30000 # Porta pubblica
   type: NodePort
  
 

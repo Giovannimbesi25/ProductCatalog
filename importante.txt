@@ -21,9 +21,20 @@ kubectl port-forward service/product-backend 8080:8080
 minikube service product-backend --url
 
 
-productMS
+RDS Params
+
+productDB
 root
 giovanni
 3307
+productdb.chkcwmeiw65e.eu-north-1.rds.amazonaws.com
+
+security group
+
+my-security-group
 
 
+
+EC2 params
+
+productEc2

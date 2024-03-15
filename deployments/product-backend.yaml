@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product-backend
+  name: product-backend-deployment
 spec:
   replicas: 1
   selector:
@@ -21,14 +21,13 @@ spec:
               containerPort: 8080 
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://mysql-service:3306/springBoot"
+              value: "jdbc:mysql://productdb.chkcwmeiw65e.eu-north-1.rds.amazonaws.com:3307/productDB"
             - name: SPRING_DATASOURCE_USERNAME
               value: "root"
             - name: SPRING_DATASOURCE_PASSWORD
               value: "giovanni"
 
 ---
-
 
 apiVersion: v1
 kind: Service
@@ -38,10 +37,14 @@ spec:
   selector:
     app: product-backend
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
-  type: ClusterIP
+    - protocol: "TCP"
+      port: 8080 # Porta interna del servizio nel cluster
+      targetPort: 8080 # Porta esposta dal servizio
+      nodePort: 30001 # Porta pubblica
+  type: NodePort
+
+
+
 
 
 
