@@ -1,0 +1,18 @@
+footer {
+    position: fixed;
+    text-align: left;
+    bottom: 40px;
+    left: 20px;
+    width: 100%;
+  }
+
+
+  .link-button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+  }
