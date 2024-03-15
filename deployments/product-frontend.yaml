@@ -19,8 +19,8 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: API_BASE_URL
-              value: "http://product-backend-service:8080/api/products"
+            - name: REACT_APP_SERVER_BASE_URL
+              value: "http://192.168.49.2:30001/api/products"
 ---
 
 
