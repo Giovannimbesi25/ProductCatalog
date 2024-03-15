@@ -6,8 +6,8 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://192.168.49.2:30001/api/products'
 
-
 console.log("Nuovo Base ",API_BASE_URL);
+console.log("Prova", process.env.REACT_APP_NODE_ENV)
 
 const ProductService = {
   getAllProducts: (limit) => axios.get(`${API_BASE_URL}?limit=${limit}`),
