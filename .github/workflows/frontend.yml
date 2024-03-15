@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: .productFrontend//Dockerfile
+          file: ./productFrontend//Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
 
