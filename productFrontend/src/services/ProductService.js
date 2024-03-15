@@ -1,12 +1,9 @@
 import axios from 'axios';
 
-//const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8080/api/products';
+const API_BASE_URL = process.env.REACT_APP_NODE_ENV || 'http://localhost:8080/api/products';
 
 // const API_BASE_URL = "http://product-backend-service:8080/api/products";
 
-const API_BASE_URL = process.env.REACT_APP_NODE_ENV
-
-console.log("Nuovo Base ",API_BASE_URL);
 console.log("Prova", process.env.REACT_APP_NODE_ENV)
 
 const ProductService = {
