@@ -1,0 +1,37 @@
+# playbook.yml
+
+---
+- hosts: k8s-sn-ec2
+  become: true  
+
+
+  tasks:
+    - name: Stop Minikube
+      shell: "minikube stop"
+      become: no
+
+    - name: Delete Minikube
+      shell: "minikube delete"
+      become: no
+
+    - name: Run minikube
+      shell: "minikube start  --driver=docker"
+      become: no
+
+
+    - name: Run bash script to deploy k8s cluster
+      shell: "./minikube.sh"
+      become: no
+
+
+    # - name: Run minikube tunnel 
+    #   ansible.builtin.shell: minikube tunnel &
+    #   become: no
+    
+
+    # - name: Port forward the api gateway 
+    #   shell: "nohup kubectl port-forward svc/gateway-service 8000:80 --address 0.0.0.0 > /dev/null 2>&1 &"
+    #   become_user: "{{ ansible_user }}"
+
+
+#ansible-playbook -i inventory.ini playbook.yml
