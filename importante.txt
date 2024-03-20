@@ -39,3 +39,25 @@ EC2 params
 
 productEc2
 13.53.199.174
+
+
+
+
+
+
+avere un ingress che fa il routing sulla rotta route verso il frontend
+
+ed un /api verso il backend
+
+ingress funziona da api gateway e risolve 
+
+tutti i servizi devono uscire con un unico servizio ip
+
+
+due diagrammi architetturali
+uno ad alto livello
+ed uno a livello di ogni blocchetto
+ogni capitolo un aspetto così come l'ho presentato
+
+
+usare clusterIP
