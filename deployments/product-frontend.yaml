@@ -19,7 +19,7 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: API_BASE_URL
+            - name: REACT_APP_URL
               value: "http://192.168.49.2:30001/api/products"
 ---
 
