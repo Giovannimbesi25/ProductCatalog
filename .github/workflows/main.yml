@@ -1,7 +1,6 @@
 #GitHub Action Main file
-
 name: Build Docker Images
-run-name: 'Build product-images (build version: ${{github.run_number}})'
+run-name: 'Build Product-Images (build version: ${{github.run_number}})'
 
 on:
   push:

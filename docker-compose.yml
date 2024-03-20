@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: springBoot
 
 
-  productBackend:
+  product-backend:
       build:
         context: ./productBackend
         dockerfile: Dockerfile
@@ -25,11 +25,11 @@ services:
         SPRING_DATASOURCE_VALIDATION-QUERY: "SELECT 1"
 
 
-  productFrontend:
+  product-frontend:
       build:
         context: ./productFrontend
         dockerfile: Dockerfile
       ports:
         - "3000:80"
-      args:
-        REACT_APP_API_BASE_URL: http://127.0.0.1:8080/api
+      environment:
+        REACT_APP_NODE_ENV: http://127.0.0.1:8080/api
