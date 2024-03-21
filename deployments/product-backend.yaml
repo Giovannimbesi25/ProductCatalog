@@ -42,8 +42,8 @@ spec:
     - protocol: "TCP"
       port: 8080 # Porta interna del servizio nel cluster
       targetPort: 8080 # Porta esposta dal servizio
-      nodePort: 30001 # Porta pubblica
-  # type: NodePort
+      # nodePort: 30001 # Porta pubblica
+    # type: NodePort
 
 
 
