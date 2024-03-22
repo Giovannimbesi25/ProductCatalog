@@ -69,8 +69,8 @@ const ProductList = () => {
         {products.map((product) => (
           <div key={product.id} className="product">
             <p className="product-name">{product.name}</p>
-            <p>Description: {product.description}</p>
-            <p className="product-price">Price: ${product.price}</p>
+            <p>{product.description}</p>
+            <p className="product-price">${product.price}</p>
             <button
               onClick={() => navigate(`/products/${product.id}`)}
               className="link-button"

@@ -21,8 +21,8 @@ spec:
               containerPort: 8080 
           env:
             - name: SPRING_DATASOURCE_URL
-              # value: "jdbc:mysql://productdb.chkcwmeiw65e.eu-north-1.rds.amazonaws.com:3307/productDB"
-              value: "jdbc:mysql://mysql-service:3306/springBoot"
+              value: "jdbc:mysql://productdb.cncw2muw0bl9.us-east-1.rds.amazonaws.com:3307/productDB"
+              #value: "jdbc:mysql://mysql-service:3306/springBoot"
 
             - name: SPRING_DATASOURCE_USERNAME
               value: "root"

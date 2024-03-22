@@ -1,24 +1,49 @@
-docker build -t product-backend .
-docker tag product-backend giovannimbesi/product-backend:latest
-docker push giovannimbesi/product-backend:latest
+COMANDI DOCKER
 
-docker build -t product-frontend .
-docker tag product-frontend giovannimbesi/product-frontend:latest
-docker push giovannimbesi/product-frontend:latest
+    -docker build -t product-backend .
+    -docker tag product-backend giovannimbesi/product-backend:latest
+    -docker push giovannimbesi/product-backend:latest
 
-docker run --rm -p 80:80 product-frontend
-docker run --rm -p 8080:8080 product-backend
+    -docker build -t product-frontend .
+    -docker tag product-frontend giovannimbesi/product-frontend:latest
+    -docker push giovannimbesi/product-frontend:latest
 
-minikube start
-kubectl apply -f deployments/mysql.yaml
-kubectl apply -f deployments/product-frontend.yaml
-kubectl apply -f deployments/product-backend.yaml
+    -docker run --rm -p 80:80 product-frontend
+    -docker run --rm -p 8080:8080 product-backend
 
-kubectl get all -o
 
-kubectl port-forward service/product-backend 8080:8080
+CONNESSIONE
 
-minikube service product-backend --url
+    ssh -i "KeyEC2.pem" ubuntu@ec2-54-196-123-53.compute-1.amazonaws.com
+
+
+
+INSTALLAZIONE SU EC2
+
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl
+    kubectl version --client
+    sudo apt-get update -y &&  sudo apt-get install -y docker.io
+    curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+      && chmod +x minikube \
+      && sudo mv minikube /usr/local/bin/
+    minikube version
+
+COPIA FILE
+    scp -r ansible ubuntu@indirizzo_IP_istanza:~
+    scp -r deployments ubuntu@indirizzo_IP_istanza:~
+
+
+    --minikube start
+    --kubectl apply -f deployments/mysql.yaml
+    --kubectl apply -f deployments/product-frontend.yaml
+    --kubectl apply -f deployments/product-backend.yaml
+
+
+
+
+
 
 
 RDS Params
@@ -27,7 +52,7 @@ productDB
 root
 giovanni
 3307
-productdb.chkcwmeiw65e.eu-north-1.rds.amazonaws.com
+productdb.cncw2muw0bl9.us-east-1.rds.amazonaws.com
 
 security group
 
@@ -35,23 +60,19 @@ my-security-group
 
 
 
-EC2 params
-
-productEc2
-13.53.199.174
-
-
+EC2
+54.196.123.53
+productEC2 
+utente=ubuntu
 
 
 
 
-avere un ingress che fa il routing sulla rotta route verso il frontend
 
-ed un /api verso il backend
 
-ingress funziona da api gateway e risolve 
 
-tutti i servizi devono uscire con un unico servizio ip
+
+
 
 
 due diagrammi architetturali
@@ -60,4 +81,3 @@ ed uno a livello di ogni blocchetto
 ogni capitolo un aspetto così come l'ho presentato
 
 
-usare clusterIP
