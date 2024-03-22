@@ -17,7 +17,7 @@
       become: no
 
     - name: Run bash script to deploy k8s cluster
-      shell: "./minikube.sh"
+      shell: "./ansible/ansible_deploy_k8s/minikube.sh"
       become: no
 
 #ansible-playbook -i inventory/inventory.ini playbook.yml
