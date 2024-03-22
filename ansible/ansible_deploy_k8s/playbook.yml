@@ -1,6 +1,6 @@
 
 ---
-- hosts: k8s-sn-ec2
+- hosts: productEC2
   become: true  
 
   tasks:
@@ -13,7 +13,7 @@
       become: no
 
     - name: Run minikube
-      shell: "minikube start  --driver=docker"
+      shell: "minikube start --driver=docker"
       become: no
 
     - name: Run bash script to deploy k8s cluster

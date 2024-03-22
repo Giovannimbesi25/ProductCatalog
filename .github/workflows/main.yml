@@ -43,7 +43,7 @@ jobs:
           key: ${{ secrets.SSH_SK_SECRET }}
           inventory: |
             [productEC2]
-            54.196.123.53 ansible_user=ubuntu
+            44.199.234.254 ansible_user=ubuntu
       
 
 

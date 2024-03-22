@@ -1,15 +1,13 @@
 COMANDI DOCKER
 
-    -docker build -t product-backend .
-    -docker tag product-backend giovannimbesi/product-backend:latest
-    -docker push giovannimbesi/product-backend:latest
-
-    -docker build -t product-frontend .
-    -docker tag product-frontend giovannimbesi/product-frontend:latest
-    -docker push giovannimbesi/product-frontend:latest
-
-    -docker run --rm -p 80:80 product-frontend
-    -docker run --rm -p 8080:8080 product-backend
+    docker build -t product-backend .
+    docker tag product-backend giovannimbesi/product-backend:latest
+    docker push giovannimbesi/product-backend:latest
+    docker build -t product-frontend .
+    docker tag product-frontend giovannimbesi/product-frontend:latest
+    docker push giovannimbesi/product-frontend:latest
+    docker run --rm -p 80:80 product-frontend
+    docker run --rm -p 8080:8080 product-backend
 
 
 CONNESSIONE
@@ -30,15 +28,22 @@ INSTALLAZIONE SU EC2
       && sudo mv minikube /usr/local/bin/
     minikube version
 
+
+
+
 COPIA FILE
-    scp -r ansible ubuntu@indirizzo_IP_istanza:~
-    scp -r deployments ubuntu@indirizzo_IP_istanza:~
+
+    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@44.199.234.254:~
+    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@44.199.234.254:~
 
 
-    --minikube start
-    --kubectl apply -f deployments/mysql.yaml
-    --kubectl apply -f deployments/product-frontend.yaml
-    --kubectl apply -f deployments/product-backend.yaml
+    minikube start
+    kubectl apply -f deployments/mysql.yaml
+    kubectl apply -f deployments/product-frontend.yaml
+    kubectl apply -f deployments/product-backend.yaml
+    minikube addons enable ingress
+    kubectl apply -f ../../deployments/ingress.yaml
+    minikube ip
 
 
 
@@ -61,7 +66,7 @@ my-security-group
 
 
 EC2
-54.196.123.53
+44.199.234.254
 productEC2 
 utente=ubuntu
 
