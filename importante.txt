@@ -27,14 +27,15 @@ INSTALLAZIONE SU EC2
       && chmod +x minikube \
       && sudo mv minikube /usr/local/bin/
     minikube version
+    minikube start --driver=docker
 
 
 
 
 COPIA FILE
 
-    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@44.199.234.254:~
-    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@44.199.234.254:~
+    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@44.222.93.168:~
+    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@44.222.93.168:~
 
 
     minikube start
@@ -42,7 +43,7 @@ COPIA FILE
     kubectl apply -f deployments/product-frontend.yaml
     kubectl apply -f deployments/product-backend.yaml
     minikube addons enable ingress
-    kubectl apply -f ../../deployments/ingress.yaml
+    kubectl apply -f deployments/ingress.yaml
     minikube ip
 
 
@@ -66,7 +67,7 @@ my-security-group
 
 
 EC2
-44.199.234.254
+44.222.93.168
 productEC2 
 utente=ubuntu
 
