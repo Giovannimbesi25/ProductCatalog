@@ -34,14 +34,15 @@ INSTALLAZIONE SU EC2
 
 COPIA FILE
 
-    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@44.222.93.168:~
-    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@44.222.93.168:~
+    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@44.202.186.75:~
+    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@44.202.186.75:~
 
 
     minikube start
-    kubectl apply -f deployments/mysql.yaml
     kubectl apply -f deployments/product-frontend.yaml
     kubectl apply -f deployments/product-backend.yaml
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
+
     minikube addons enable ingress
     kubectl apply -f deployments/ingress.yaml
     minikube ip
@@ -67,7 +68,7 @@ my-security-group
 
 
 EC2
-44.222.93.168
+44.202.186.75
 productEC2 
 utente=ubuntu
 
