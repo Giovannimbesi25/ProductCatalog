@@ -1,24 +1,20 @@
 
 ---
+
 - hosts: productEC2
   become: true  
-
   tasks:
-    - name: Stop Minikube
-      shell: "minikube stop"
-      become: no
-
-    - name: Delete Minikube
-      shell: "minikube delete"
-      become: no
-
-    - name: Run minikube
-      shell: "minikube start --driver=docker"
-      become: no
-
     - name: Run bash script to deploy k8s cluster
-      shell: "./ansible/ansible_deploy_k8s/minikube.sh"
-      become: no
-    
+      shell: "sudo kubectl apply -f deployments"
 
-#ansible-playbook -i inventory/inventory.ini playbook.yml
+    - name: Start port forwarding for backend service
+      shell: "nohup kubectl port-forward service/product-backend-service 8080:8080 &"
+      async: 0
+      poll: 0
+
+    - name: Start port forwarding for frontend service
+      shell: "nohup kubectl port-forward service/product-frontend-service 3000:80 &"
+      async: 0
+      poll: 0
+
+

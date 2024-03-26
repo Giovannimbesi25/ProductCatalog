@@ -4,7 +4,7 @@ metadata:
   name: product-ingress
 spec:
   rules:
-    - http:
+      http:
         paths:
           - path: /api
             pathType: Prefix
@@ -20,7 +20,3 @@ spec:
                 name: product-frontend-service
                 port:
                   number: 3000
-
-
-
-

@@ -32,20 +32,24 @@ INSTALLAZIONE SU EC2
 
 
 
-COPIA FILE
-
-    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@44.202.186.75:~
-    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@44.202.186.75:~
+COMANDI
+    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@3.219.219.176:~
+    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@3.219.219.176:~
 
 
     minikube start
     kubectl apply -f deployments/product-frontend.yaml
     kubectl apply -f deployments/product-backend.yaml
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
+    nohup kubectl port-forward service/product-backend-service 8080:8080 --address 0.0.0.0 &
+    nohup kubectl port-forward service/product-frontend-service 3000:80 --address 0.0.0.0 &
 
     minikube addons enable ingress
+
     kubectl apply -f deployments/ingress.yaml
     minikube ip
+
+
+
 
 
 
@@ -68,13 +72,9 @@ my-security-group
 
 
 EC2
-44.202.186.75
+3.219.219.176
 productEC2 
 utente=ubuntu
-
-
-
-
 
 
 
@@ -86,5 +86,7 @@ due diagrammi architetturali
 uno ad alto livello
 ed uno a livello di ogni blocchetto
 ogni capitolo un aspetto così come l'ho presentato
+
+
 
 
