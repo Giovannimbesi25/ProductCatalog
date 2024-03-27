@@ -8,12 +8,12 @@
       shell: "sudo kubectl apply -f deployments"
 
     - name: Start port forwarding for backend service
-      shell: "nohup kubectl port-forward service/product-backend-service 8080:8080 &"
+      shell: "nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &"
       async: 0
       poll: 0
 
     - name: Start port forwarding for frontend service
-      shell: "nohup kubectl port-forward service/product-frontend-service 3000:80 &"
+      shell: "nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &"
       async: 0
       poll: 0
 

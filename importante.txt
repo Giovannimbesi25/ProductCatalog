@@ -10,10 +10,6 @@ COMANDI DOCKER
     docker run --rm -p 8080:8080 product-backend
 
 
-CONNESSIONE
-
-    ssh -i "KeyEC2.pem" ubuntu@ec2-54-196-123-53.compute-1.amazonaws.com
-
 
 
 INSTALLAZIONE SU EC2
@@ -33,16 +29,15 @@ INSTALLAZIONE SU EC2
 
 
 COMANDI
-    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@3.219.219.176:~
-    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@3.219.219.176:~
+    scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@44.213.125.179:~
+    scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@44.213.125.179:~
 
 
     minikube start
     kubectl apply -f deployments/product-frontend.yaml
     kubectl apply -f deployments/product-backend.yaml
-    nohup kubectl port-forward service/product-backend-service 8080:8080 --address 0.0.0.0 &
-    nohup kubectl port-forward service/product-frontend-service 3000:80 --address 0.0.0.0 &
-
+    nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &
+    nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &
     minikube addons enable ingress
 
     kubectl apply -f deployments/ingress.yaml
@@ -72,7 +67,7 @@ my-security-group
 
 
 EC2
-3.219.219.176
+44.213.125.179
 productEC2 
 utente=ubuntu
 
