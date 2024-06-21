@@ -26,7 +26,7 @@ Questo progetto include uno script bash `run.sh` che facilita l'installazione e 
 ### Prerequisiti
 
 - Assicurati di avere ssh installato.
-- Una chiave di tipo .pem che permetta la connessione alla macchina remota e che si trovi nella stessa cartella in cui è presente il progetto.
+- Una chiave come `KeyEC2.pem` che permetta la connessione alla macchina remota e che si trovi nella stessa cartella in cui è presente il progetto. 
 - L'indirizzo IPv4 della macchina remota.
 
 ### Utilizzo
@@ -55,3 +55,5 @@ Lo script si occupa di verificare e, nel caso, installare kubectl, Docker e Mini
 Sostituire `<ip-addr>` con l'indirizzo IP della macchina di destinazione del deploy.
 
 Si suppone che la macchina remota sia basata su una distribuzione Linux Ubuntu, ma è possibile adattarlo in qualsiasi ambiente.
+
+Abilitare la chiave .pem per la connessione remota (`chmod 400 KeyEC2.pem`) 
