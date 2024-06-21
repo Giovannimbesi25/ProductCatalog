@@ -48,6 +48,7 @@ Questo progetto include uno script bash `run.sh` che facilita l'installazione e 
    ```
 
 2. **Esecuzione dello Script**
+
    Connettiti alla macchina di destinazione via SSH ed esegui lo script.
 
    ```
