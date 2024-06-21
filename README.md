@@ -53,4 +53,5 @@ Lo script si occupa di verificare e, nel caso, installare kubectl, Docker e Mini
 
 ### Nota 
 Sostituire `<ip-addr>` con l'indirizzo IP della macchina di destinazione del deploy.
+
 Si suppone che la macchina remota sia basata su una distribuzione Linux Ubuntu, ma è possibile adattarlo in qualsiasi ambiente.
