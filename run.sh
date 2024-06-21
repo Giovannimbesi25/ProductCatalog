@@ -4,7 +4,6 @@
 # Trasferimento deployments
 echo "Trasferimento dei file necessari..."
 scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@<ip-addr>
-check_command_success
 scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@<ip-addr>
 
 #!/bin/bash
