@@ -21,38 +21,30 @@ Il processo di Continuous Integration (CI) e Continuous Deployment (CD) è gesti
 
 ## How To
 
-Questo progetto include uno script bash `run.sh` che facilita l'installazione e la configurazione di un cluster Minikube su una macchina remota. Lo script gestisce l'installazione di Kubectl, Docker, e Minikube, oltre a trasferire i file necessari per applicare i deployment Kubernetes.
+Questo progetto include uno script bash `run.sh` che facilita l'installazione e la configurazione di un cluster Minikube su una macchina remota, ed avvia i servizi di frontend e backend. Lo script gestisce l'installazione di Kubectl, Docker, e Minikube, oltre a trasferire i file necessari per applicare i deployment Kubernetes.
 
 ### Prerequisiti
 
-- Accesso SSH alla macchina di destinazione con una chiave PEM (es. `KeyEC2.pem`).
-- Una connessione internet attiva sulla macchina di destinazione.
-- Si suppone che la macchina di destinazione sia basata su una distribuzione Linux Ubuntu, ma è possibile adattarlo in qualsiasi ambiente.
+- Assicurati di avere ssh installato.
+- Una chiave di tipo .pem che permetta la connessione alla macchina remota e che si trovi nella stessa cartella in cui è presente il progetto.
+- L'indirizzo IPv4 della macchina remota.
 
 ### Utilizzo
 
-1. **Copia dello Script sulla Macchina di Destinazione**
-
-   Prima di tutto, copia lo script run.sh sulla macchina di destinazione. Puoi farlo utilizzando scp:
+1. **Scarica il progetto**
 
    ```sh
-   scp -i KeyEC2.pem setup_minikube.sh ubuntu@<ip-addr>:~
-
+   git clone https://github.com/Giovannimbesi25/cloud_project.git
    ```
 
-
-2. **Copia file di deploy**
+2. **Posizionati sulla cartella del progetto**
    ```
-   scp -i KeyEC2.pem -r cloud_project/ansible/ ubuntu@<ip-addr>:~
-   scp -i KeyEC2.pem -r cloud_project/deployments/ ubuntu@<ip-addr>:~
+   cd cloud_project
    ```
 
 2. **Esecuzione dello Script**
 
-   Connettiti alla macchina di destinazione via SSH ed esegui lo script.
-
    ```
-   ssh -i KeyEC2.pem ubuntu@<ip-addr>
    chmod +x run.sh
    ./run.sh
    ```
@@ -61,3 +53,4 @@ Lo script si occupa di verificare e, nel caso, installare kubectl, Docker e Mini
 
 ### Nota 
 Sostituire `<ip-addr>` con l'indirizzo IP della macchina di destinazione del deploy.
+Si suppone che la macchina remota sia basata su una distribuzione Linux Ubuntu, ma è possibile adattarlo in qualsiasi ambiente.
