@@ -4,10 +4,12 @@
   become: true  
 
   tasks:
-    - name: Inside
-      shell: "ls"
 
-  tasks:
+    - name: Esegui comando ls sulla macchina remota
+      shell: ls
+      register: result_ls
+      become: true
+      
     - name: Run bash script to deploy k8s cluster
       shell: "kubectl apply -f deployments/"
 
