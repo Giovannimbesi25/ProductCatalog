@@ -49,10 +49,15 @@ Questo progetto include uno script bash `run.sh` che facilita l'installazione e 
    ./run.sh
    ```
 
-Lo script si occupa di verificare e, nel caso, installare kubectl, Docker e Minikube. Successivamente applica i file di deployment Kubernetes per configurare i servizi product-frontend e product-backend, esponendoli in modo da poterli contattare dall'esterno. Infine, mostra l'indirizzo IP del cluster tramite cui è possibile raggiungere la web app con un qualsiasi browser.
+Lo script si occupa di verificare e, nel caso, installare kubectl, Docker e Minikube. Successivamente applica i file di deployment Kubernetes per configurare i servizi product-frontend e product-backend, esponendoli in modo da poterli contattare dall'esterno. 
+
+Terminato lo script sarà possibile raggiungere la web app con un qualsiasi browser, inserendo come URL l'indirizzo ip pubblico della macchina remota con porta `:3000`.
+
+
+
 
 ### Note
-Sostituire `<ip-addr>` con l'indirizzo IP della macchina di destinazione del deploy.
+Sostituire nel progetto `<ip-addr>` con l'indirizzo IP della macchina di destinazione del deploy.
 
 Si suppone che la macchina remota sia basata su una distribuzione Linux Ubuntu, ma è possibile adattarlo in qualsiasi ambiente.
 

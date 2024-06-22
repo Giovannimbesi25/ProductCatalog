@@ -20,7 +20,7 @@ spec:
             - containerPort: 3000
           env:
             - name: REACT_APP_URL
-              value: "http://44.203.131.79:8080/api/products"
+              value: "http://3.82.102.202:8080/api/products"
               
 ---
 

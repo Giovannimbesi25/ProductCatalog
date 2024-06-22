@@ -2,8 +2,6 @@ import axios from 'axios';
 
 const API_BASE_URL = process.env.REACT_APP_URL || 'http://localhost:8080/api/products';
 
-// const API_BASE_URL = "http://product-backend-service:8080/api/products";
-
 console.log("Prova", process.env.REACT_APP_URL)
 
 const ProductService = {
