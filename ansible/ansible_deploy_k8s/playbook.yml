@@ -1,24 +1,19 @@
 ---
 
-- hosts: productEC2
+- hosts: localhost
   become: true  
 
   tasks:
 
-
     - name: Run bash script to deploy k8s cluster
-      shell: "./minikube.sh"
-      become: no
+      shell: "kubectl apply -f deployments/product-frontend.yaml && kubectl apply -f deployments/product-backend.yaml"
 
-    # - name: Run bash script to deploy k8s cluster
-    #   shell: "kubectl apply -f deployments/product-frontend.yaml && kubectl apply -f deployments/product-backend.yaml"
+    - name: Start port forwarding for backend service
+      shell: "nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &"
+      async: 0
+      poll: 0
 
-    # - name: Start port forwarding for backend service
-    #   shell: "nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &"
-    #   async: 0
-    #   poll: 0
-
-    # - name: Start port forwarding for frontend service
-    #   shell: "nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &"
-    #   async: 0
-    #   poll: 0
+    - name: Start port forwarding for frontend service
+      shell: "nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &"
+      async: 0
+      poll: 0
