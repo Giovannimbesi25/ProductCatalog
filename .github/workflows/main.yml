@@ -14,27 +14,27 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v4
       
-      - name: Login to docker hub
-        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}  
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # - name: Login to docker hub
+      #   run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}  
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v2
+      # - name: Login to DockerHub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      - name: Product-Frontend-Image 
-        run: |
-          docker build -t product-frontend ./productFrontend/
-          docker tag product-frontend giovannimbesi/product-frontend:latest
-          docker push giovannimbesi/product-frontend:latest
+      # - name: Product-Frontend-Image 
+      #   run: |
+      #     docker build -t product-frontend ./productFrontend/
+      #     docker tag product-frontend giovannimbesi/product-frontend:latest
+      #     docker push giovannimbesi/product-frontend:latest
       
-      - name: Product-Backend-Image 
-        run: |
-          docker build -t product-backend ./productBackend/
-          docker tag product-backend giovannimbesi/product-backend:latest
-          docker push giovannimbesi/product-backend:latest
+      # - name: Product-Backend-Image 
+      #   run: |
+      #     docker build -t product-backend ./productBackend/
+      #     docker tag product-backend giovannimbesi/product-backend:latest
+      #     docker push giovannimbesi/product-backend:latest
       
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
@@ -43,7 +43,7 @@ jobs:
           key: ${{ secrets.SSH_SK_SECRET }}
           inventory: |
             [productEC2]
-            54.164.122.1 ansible_user=ubuntu
+            3.85.86.105 ansible_user=ubuntu
       
 
 
