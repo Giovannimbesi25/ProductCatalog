@@ -2,11 +2,11 @@
 
 # Trasferimento deployments
 echo "Trasferimento dei file necessari..."
-scp -i KeyEC2.pem  ansible/ansible_deploy_k8s/playbook.yml ubuntu@34.207.125.1:~
-scp -i KeyEC2.pem -r deployments/ ubuntu@34.207.125.1:~
+scp -i KeyEC2.pem -r ansible ubuntu@54.164.122.1:~
+scp -i KeyEC2.pem -r deployments/ ubuntu@54.164.122.1:~
 
 # Connessione alla macchina remota e esecuzione dei comandi
-ssh -i KeyEC2.pem ubuntu@34.207.125.1 -t '
+ssh -i KeyEC2.pem ubuntu@54.164.122.1 -t '
   # Comandi remoti da eseguire sul server remoto
 
   # Installazione di kubectl se non è già installato
