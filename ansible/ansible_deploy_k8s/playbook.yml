@@ -7,7 +7,7 @@
 
 
     - name: Run bash script to deploy k8s cluster
-      shell: "./minikube.sh"
+      shell: "sudo ./minikube.sh"
       become: no
 
     # - name: Run bash script to deploy k8s cluster
