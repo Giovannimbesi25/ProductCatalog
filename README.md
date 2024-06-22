@@ -27,7 +27,7 @@ Questo progetto include uno script bash `run.sh` che facilita l'installazione e 
 
 - Assicurati di avere ssh installato.
 - Una chiave come `KeyEC2.pem` che permetta la connessione alla macchina remota e che si trovi nella stessa cartella in cui è presente il progetto. 
-- L'indirizzo IPv4 della macchina remota.
+- Una macchina remota AWS EC2, raggiungibile tramite SSH.
 
 ### Utilizzo
 
@@ -49,9 +49,16 @@ Questo progetto include uno script bash `run.sh` che facilita l'installazione e 
    ./run.sh
    ```
 
-Lo script si occupa di verificare e, nel caso, installare kubectl, Docker e Minikube. Successivamente applica i file di deployment Kubernetes per configurare i servizi product-frontend e product-backend, esponendoli in modo da poterli contattare dall'esterno. 
+Lo script si occupa di verificare e, nel caso, installare kubectl, Docker e Minikube ed applicare i file di deployment Kubernetes per configurare i servizi product-frontend e product-backend. 
 
-Terminato lo script sarà possibile raggiungere la web app con un qualsiasi browser, inserendo come URL l'indirizzo ip pubblico della macchina remota con porta `:3000`.
+Una volta terminato occorre eseguire questi due comandi
+
+```
+    nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &
+    nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &
+
+```
+che permettono di esporre i servizi e rendere la web app raggiungibile con un qualsiasi browser, inserendo come URL l'indirizzo ip pubblico della macchina remota e come porta la `:3000`.
 
 
 
