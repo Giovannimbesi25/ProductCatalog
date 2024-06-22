@@ -3,4 +3,4 @@
   tasks:
 
     - name: Apply Deployments 
-      shell: "kubectl apply -f deployments --validate=false"
+      shell: "kubectl apply -f deployments"
