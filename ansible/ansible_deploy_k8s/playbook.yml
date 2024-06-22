@@ -7,8 +7,8 @@
 
 
     - name: Run bash script to deploy k8s cluster
-      shell: "sudo ./minikube.sh"
-      become: no
+      shell: "./minikube.sh"
+      mode: '0755'
 
     # - name: Run bash script to deploy k8s cluster
     #   shell: "kubectl apply -f deployments/product-frontend.yaml && kubectl apply -f deployments/product-backend.yaml"
