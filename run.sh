@@ -2,11 +2,11 @@
 
 # Trasferimento deployments
 echo "Trasferimento dei file necessari..."
-scp -i KeyEC2.pem -r ansible/ ubuntu@44.203.131.79:~
-scp -i KeyEC2.pem -r deployments/ ubuntu@44.203.131.79:~
+scp -i KeyEC2.pem -r ansible/ ubuntu@3.82.102.202:~
+scp -i KeyEC2.pem -r deployments/ ubuntu@3.82.102.202:~
 
 # Connessione alla macchina remota e esecuzione dei comandi
-ssh -i KeyEC2.pem ubuntu@44.203.131.79 -t '
+ssh -i KeyEC2.pem ubuntu@3.82.102.202 -t '
   # Comandi remoti da eseguire sul server remoto
 
   # Installazione di kubectl se non è già installato
@@ -50,8 +50,7 @@ ssh -i KeyEC2.pem ubuntu@44.203.131.79 -t '
 
   # Applica i deployment
   echo "Applicazione dei deployment su Minikube..."
-  kubectl apply -f ~/deployments/product-frontend.yaml
-  kubectl apply -f ~/deployments/product-backend.yaml
+  kubectl apply -f ~/deployments
 
   echo "Esponi i servizi..."
   nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &
