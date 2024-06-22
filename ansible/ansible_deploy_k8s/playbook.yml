@@ -2,5 +2,5 @@
   tasks:
 
     - name: Apply Deployments 
-      shell: "/usr/local/bin/kubectl apply -f"
+      shell: "/usr/local/bin/kubectl apply -f deployments"
       become: false  
