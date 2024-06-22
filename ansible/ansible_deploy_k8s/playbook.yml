@@ -1,6 +1,18 @@
+---
 - hosts: productEC2
-  tasks:
 
-    - name: Apply Deployments 
-      shell: "kubectl apply -f deployments"
-      become: false  
+  tasks:
+    - name: Stop Minikube
+      shell: "minikube stop"
+      become: no
+
+    - name: Delete Minikube
+      shell: "minikube delete"
+      become: no
+    - name: Run minikube
+      shell: "minikube start --driver=docker"
+      become: no
+
+    - name: Run bash script to deploy k8s cluster
+      shell: "kubect apply -f deployments"
+      become: no
