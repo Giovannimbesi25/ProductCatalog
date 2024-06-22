@@ -2,10 +2,10 @@
 
 # Trasferimento deployments
 echo "Trasferimento dei file necessari..."
-scp -i KeyEC2.pem -r deployments ubuntu@54.161.137.137:~
+scp -i KeyEC2.pem -r deployments ubuntu@44.203.148.74:~
 
 # Connessione alla macchina remota e esecuzione dei comandi
-ssh -i KeyEC2.pem ubuntu@54.161.137.137 -t '
+ssh -i KeyEC2.pem ubuntu@44.203.148.74 -t '
   # Comandi remoti da eseguire sul server remoto
 
   # Installazione di kubectl se non è già installato

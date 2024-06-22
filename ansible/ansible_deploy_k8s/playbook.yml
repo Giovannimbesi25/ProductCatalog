@@ -1,6 +1,8 @@
 - hosts: productEC2
-  become: true  
+  become: true
   tasks:
-
-    - name: Apply Deployments 
-      shell: "kubectl apply -f deployments"
+    - name: Apply Deployments
+      kubectl:
+        apply:
+          src: deployments
+        kubeconfig: "~{{ansible_user}}/.kube/config"
