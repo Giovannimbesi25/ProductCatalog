@@ -18,7 +18,7 @@ ssh -i KeyEC2.pem ubuntu@18.234.77.156 -t '
     echo "kubectl è già installato."
   fi
 
-  # Installazione di Docker se non è già installato
+  # Installazione di Docker se non è installato
   if ! command -v docker &> /dev/null; then
     echo "Installazione di Docker..."
     sudo apt-get update -y && sudo apt-get install -y docker.io
