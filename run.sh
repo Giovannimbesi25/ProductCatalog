@@ -2,11 +2,11 @@
 
 # Trasferimento deployments
 echo "Trasferimento dei file necessari..."
-scp -i KeyEC2.pem -r ansible/ ubuntu@3.82.102.202:~
-scp -i KeyEC2.pem -r deployments/ ubuntu@3.82.102.202:~
+scp -i KeyEC2.pem  ansible/ansible_deploy_k8s/playbook.yml ubuntu@34.207.125.1:~
+scp -i KeyEC2.pem -r deployments/ ubuntu@34.207.125.1:~
 
 # Connessione alla macchina remota e esecuzione dei comandi
-ssh -i KeyEC2.pem ubuntu@3.82.102.202 -t '
+ssh -i KeyEC2.pem ubuntu@34.207.125.1 -t '
   # Comandi remoti da eseguire sul server remoto
 
   # Installazione di kubectl se non è già installato
@@ -54,7 +54,10 @@ ssh -i KeyEC2.pem ubuntu@3.82.102.202 -t '
 
   echo "Esponi i servizi..."
   nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &
-  nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 
+  nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &
+
+  bash -l
 '
+
 
 echo "Script completato con successo."
