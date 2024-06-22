@@ -1,24 +1,15 @@
 ---
-
-- hosts: localhost
-  become: true  
-
+- name: Run minikube script
+  hosts: localhost
+  connection: local
   tasks:
+    - name: Ensure minikube.sh has execute permission
+      ansible.builtin.file:
+        path: /home/ubuntu/minikube.sh
+        mode: '0755'
 
-
-    - name: Run bash script to deploy k8s cluster
-      shell: "./minikube.sh"
-      mode: '0755'
-
-    # - name: Run bash script to deploy k8s cluster
-    #   shell: "kubectl apply -f deployments/product-frontend.yaml && kubectl apply -f deployments/product-backend.yaml"
-
-    # - name: Start port forwarding for backend service
-    #   shell: "nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &"
-    #   async: 0
-    #   poll: 0
-
-    # - name: Start port forwarding for frontend service
-    #   shell: "nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &"
-    #   async: 0
-    #   poll: 0
+    - name: Run minikube script
+      ansible.builtin.command:
+        cmd: ./minikube.sh
+        chdir: /home/ubuntu
+      become: true
