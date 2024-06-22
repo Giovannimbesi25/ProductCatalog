@@ -14,5 +14,5 @@
       become: no
 
     - name: Run bash script to deploy k8s cluster
-      shell: "kubect apply -f deployments"
+      shell: "kubectl apply -f deployments"
       become: no
