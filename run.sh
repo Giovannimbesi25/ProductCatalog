@@ -51,10 +51,6 @@ ssh -i KeyEC2.pem ubuntu@18.207.0.28 -t '
   echo "Applicazione dei deployment su Minikube..."
   kubectl apply -f ~/deployments
 
-  echo "Espongo i servizi..."
-  nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &
-  nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &
-
   bash -l
 '
 
