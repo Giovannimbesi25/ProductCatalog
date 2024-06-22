@@ -2,9 +2,14 @@
 
 - hosts: productEC2
   become: true  
+
+  tasks:
+    - name: Inside
+      shell: "ls"
+
   tasks:
     - name: Run bash script to deploy k8s cluster
-      shell: "kubectl apply -f ~/deployments"
+      shell: "kubectl apply -f deployments/"
 
     - name: Start port forwarding for backend service
       shell: "nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &"
