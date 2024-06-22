@@ -16,3 +16,8 @@
     - name: Run bash script to deploy k8s cluster
       shell: "kubectl apply -f deployments"
       become: no
+
+    - name: Publish Services
+      shell: "nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &
+              nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &"
+      become: no
