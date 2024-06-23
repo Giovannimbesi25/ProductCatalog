@@ -17,10 +17,6 @@
       shell: "kubectl apply -f deployments"
       become: no
 
-    - name: Wait for pods
-      shell: "sleep 20"
-      become: no
-
     - name: Publish Services
       shell: "nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 > /dev/null 2>&1 &
               nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 > /dev/null 2>&1 &"

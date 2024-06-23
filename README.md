@@ -51,16 +51,19 @@ Questo progetto include uno script bash `run.sh` che facilita l'installazione e 
 
 Lo script si occupa di verificare e, nel caso, installare kubectl, Docker e Minikube ed applicare i file di deployment Kubernetes per configurare i servizi product-frontend e product-backend. 
 
-Una volta terminato occorre eseguire questi due comandi
+Una volta terminato occorre assicurarsi ,dalla console della macchina remota, che i pods siano in stato di running 
+```
+kubectl get pods
 
 ```
-    nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &
-    nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &
+ed eseguire questi due comandi
+
+```
+nohup kubectl port-forward svc/product-backend-service 8080:8080 --address 0.0.0.0 &
+nohup kubectl port-forward svc/product-frontend-service 3000:80 --address 0.0.0.0 &
 
 ```
 che permettono di esporre i servizi e rendere la web app raggiungibile con un qualsiasi browser, inserendo come URL l'indirizzo ip pubblico della macchina remota e come porta la `:3000`.
-
-
 
 
 ### Note
