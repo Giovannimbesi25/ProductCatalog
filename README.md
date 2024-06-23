@@ -64,7 +64,7 @@ che permettono di esporre i servizi e rendere la web app raggiungibile con un qu
 
 
 ### Note
-Sostituire nel progetto `<ip-addr>` con l'indirizzo IP della macchina di destinazione del deploy.
+Sostituire nel progetto `44.211.218.108` con l'indirizzo IP della macchina di destinazione del deploy.
 
 Si suppone che la macchina remota sia basata su una distribuzione Linux Ubuntu, ma è possibile adattarlo in qualsiasi ambiente.
 

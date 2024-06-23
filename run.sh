@@ -2,54 +2,36 @@
 
 # Trasferimento deployments
 echo "Trasferimento dei file necessari..."
-scp -i KeyEC2.pem -r deployments ubuntu@<ip-addr>:~
+scp -i KeyEC2.pem -r deployments ubuntu@44.211.218.108:~ > /dev/null 2>&1
 
 # Connessione alla macchina remota e esecuzione dei comandi
-ssh -i KeyEC2.pem ubuntu@<ip-addr> -t '
-  # Comandi remoti da eseguire sul server remoto
+ssh -i KeyEC2.pem ubuntu@44.211.218.108 -t '
+    # Comandi remoti da eseguire sul server remoto
 
-  # Installazione di kubectl se non è già installato
-  if ! command -v kubectl &> /dev/null; then
-    echo "Installazione di kubectl..."
-    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    echo 'Installazione di kubectl...'
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl > /dev/null 2>&1
     chmod +x ./kubectl
-    sudo mv ./kubectl /usr/local/bin/kubectl
-  else
-    echo "kubectl è già installato."
-  fi
+    sudo mv ./kubectl /usr/local/bin/kubectl > /dev/null 2>&1
 
-  # Installazione di Docker se non è installato
-  if ! command -v docker &> /dev/null; then
-    echo "Installazione di Docker..."
-    sudo apt-get update -y && sudo apt-get install -y docker.io
-    sudo systemctl start docker
-    sudo systemctl enable docker
-    sudo usermod -a -G docker $(whoami)
-    newgrp docker
-  else
-    echo "Docker è già installato."
-  fi
+    echo 'Installazione di Docker...'
+    sudo apt-get update -y > /dev/null 2>&1 && sudo apt-get install -y docker.io > /dev/null 2>&1
+    sudo systemctl start docker > /dev/null 2>&1
+    sudo systemctl enable docker > /dev/null 2>&1
+    sudo usermod -a -G docker $(whoami) > /dev/null 2>&1
 
-  # Installazione di Minikube se non è già installato
-  if ! command -v minikube &> /dev/null; then
-    echo "Installazione di Minikube..."
-    curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-    chmod +x minikube
-    sudo mv minikube /usr/local/bin/
-  else
-    echo "Minikube è già installato."
-  fi
+    sg docker -c "
 
-  # Avvio di Minikube
-  echo "Avvio di Minikube..."
-  minikube delete -p minikube
-  docker system prune -a
-  minikube start --driver=docker
+      echo 'Installazione di Minikube...'
+      curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 > /dev/null 2>&1
+      chmod +x minikube
+      sudo mv minikube /usr/local/bin/ > /dev/null 2>&1
 
-  # Applica i deployment
-  echo "Applicazione dei deployment su Minikube..."
-  kubectl apply -f ~/deployments
+      echo 'Avvio di Minikube...'
+      minikube start --driver=docker > /dev/null 2>&1
 
-  bash -l
+      # Applica i deployment
+      echo 'Applicazione dei deployment...'
+      kubectl apply -f ~/deployments > /dev/null 2>&1
+    "
+    exec bash -l
 '
-
