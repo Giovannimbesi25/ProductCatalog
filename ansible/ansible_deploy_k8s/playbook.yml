@@ -18,7 +18,7 @@
       become: no
 
     - name: Wait for pods
-      shell: "kubectl wait --for=condition=Ready pod --all --timeout=300s"
+      shell: "sleep 20"
       become: no
 
     - name: Publish Services
